@@ -1,0 +1,62 @@
+#include "types.h"
+#include "stat.h"
+#include "user.h"
+#include "uthread.h"
+
+void thread_a(void* arg) {
+    for(int i = 0; i < 5; i++) {
+        printf(1, "Thread A: %d\n", i);
+        thread_yield();
+    }
+    printf(1, "Thread A finished\n");
+}
+
+void thread_b(void* arg) {
+    for(int i = 0; i < 5; i++) {
+        printf(1, "Thread B: %d\n", i);
+        thread_yield();
+    }
+    printf(1, "Thread B finished\n");
+}
+
+void thread_c(void* arg) {
+    int* count = (int*)arg;
+    for(int i = 0; i < 3; i++) {
+        printf(1, "Thread C: %d (count=%d)\n", i, *count);
+        (*count)++;
+        thread_yield();
+    }
+    printf(1, "Thread C finished\n");
+}
+
+int main(int argc, char* argv[]) {
+    printf(1, "Starting user-level thread test\n");
+    
+    // Initialize thread library
+    thread_init();
+    
+    // Create threads
+    int tid_a = thread_create(thread_a, 0);
+    int tid_b = thread_create(thread_b, 0);
+    
+    int shared_count = 100;
+    int tid_c = thread_create(thread_c, &shared_count);
+    
+    printf(1, "Created threads: %d, %d, %d\n", tid_a, tid_b, tid_c);
+    
+    // Let threads run
+    for(int i = 0; i < 10; i++) {
+        printf(1, "Main thread: %d\n", i);
+        thread_yield();
+    }
+    
+    // Wait for threads to complete
+    thread_join(tid_a);
+    thread_join(tid_b);
+    thread_join(tid_c);
+    
+    printf(1, "All threads finished. Final count: %d\n", shared_count);
+    printf(1, "Thread test completed\n");
+    
+    exit();
+}
