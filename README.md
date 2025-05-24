@@ -27,8 +27,10 @@ user/uthread_test.c — Sample test program using the thread API
 
 ## 🛠️ How to Run
 ### Clone the repository and enter the project directory:
-```git clone https://github.com/yourusername/xv6-uthreads.git```
-```cd xv6-uthreads```
+```
+git clone https://github.com/yourusername/xv6-uthreads.git
+cd xv6-uthreads
+```
 
 ### Build and run xv6 with QEMU:
 ```make qemu```
