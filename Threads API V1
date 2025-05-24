@@ -1,0 +1,45 @@
+#ifndef UTHREAD_H
+#define UTHREAD_H
+
+#define STACK_SIZE 8192
+#define MAX_THREADS 64
+
+typedef enum {
+    THREAD_UNUSED,
+    THREAD_READY,
+    THREAD_RUNNING,
+    THREAD_BLOCKED,
+    THREAD_FINISHED
+} thread_state_t;
+
+typedef struct {
+    int sp;     // stack pointer
+    int bp;     // base pointer
+    int bx;
+    int cx;
+    int dx;
+    int si;
+    int di;
+} thread_context_t;
+
+typedef struct {
+    int tid;                    // thread ID
+    thread_state_t state;       // thread state
+    thread_context_t context;   // saved registers
+    char stack[STACK_SIZE];     // thread stack
+    void (func)(void);        // thread function
+    void* arg;                  // function argument
+} thread_t;
+
+// Thread library API
+int thread_create(void (func)(void), void* arg);
+void thread_yield(void);
+void thread_exit(void);
+int thread_join(int tid);
+void thread_init(void);
+
+// Internal scheduler functions
+void thread_schedule(void);
+void thread_switch(thread_context_t* old, thread_context_t* new);
+
+#endif
