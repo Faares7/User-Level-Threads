@@ -36,10 +36,7 @@ user/uthread_test.c — Sample test program using the thread API
 ### At the xv6 shell, run the test program:
 ```$ uthread_test```
 
-### The output should be something like this:
-Starting user-level thread test
-
-### 🖨️ Sample Output 
+## 🖨️ Sample Output 
 ```
 Starting user-level thread test 
 Created threads: 0, 1, 2
