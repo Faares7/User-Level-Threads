@@ -27,19 +27,52 @@ user/uthread_test.c — Sample test program using the thread API
 
 ## 🛠️ How to Run
 ### Clone the repository and enter the project directory:
-git clone https://github.com/yourusername/xv6-uthreads.git
-cd xv6-uthreads
+```git clone https://github.com/yourusername/xv6-uthreads.git```
+```cd xv6-uthreads```
 
 ### Build and run xv6 with QEMU:
-make qemu
+```make qemu```
 
 ### At the xv6 shell, run the test program:
-$ uthread_test
+```$ uthread_test```
 
 ### The output should be something like this:
 Starting user-level thread test
 
-### 🖨️ Sample Output ``` Starting user-level thread test Created threads: 0, 1, 2 Main thread: 0 Thread A: 0 Main thread: 1 Thread B: 0 Main thread: 2 Thread C: 0 (count=100) Main thread: 3 Thread A: 1 Main thread: 4 Thread B: 1 Main thread: 5 Thread C: 1 (count=101) Main thread: 6 Thread A: 2 Main thread: 7 Thread B: 2 Main thread: 8 Thread C: 2 (count=102) Main thread: 9 Thread A: 3 Thread B: 3 Thread A: 4 Thread A finished Thread B: 4 Thread B finished Thread C finished All threads finished. Final count: 103 Thread test completed ```
+### 🖨️ Sample Output 
+```
+Starting user-level thread test 
+Created threads: 0, 1, 2
+Main thread: 0
+Thread A: 0
+Main thread: 1
+Thread B: 0
+Main thread: 2
+Thread C: 0 (count=100)
+Main thread: 3
+Thread A: 1
+Main thread: 4
+Thread B: 1
+Main thread: 5
+Thread C: 1 (count=101)
+Main thread: 6
+Thread A: 2
+Main thread: 7
+Thread B: 2
+Main thread: 8
+Thread C: 2 (count=102)
+Main thread: 9
+Thread A: 3
+Thread B: 3
+Thread A: 4
+Thread A finished
+Thread B: 4
+Thread B finished
+Thread C finished
+All threads finished.
+Final count: 103
+Thread test completed
+```
 
 ## 📚 Project Objective
 This project was part of an Operating Systems course assignment to strengthen understanding of thread abstractions, context switching, and user-space scheduling.
